@@ -1,3 +1,5 @@
 vendor/**
 cache/**
 user/accounts/**
+user/localhost/
+logs/**

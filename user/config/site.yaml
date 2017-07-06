@@ -1,8 +1,17 @@
-title: RTFM Documentation
+title: KiKiKoz
+default_lang: fr
+author:
+  name: 'Thierry Chappuis'
+  email: thierry@openclassmates.org
+taxonomies:
+  - category
+  - tag
 metadata:
-    description: 'RTFM Skeleton'
-
-taxonomies: [category,tag]
+  description: 'RTFM Skeleton'
 summary:
+  enabled: true
+  format: short
   size: 300
-
+  delimiter: '==='
+blog:
+  route: /blog

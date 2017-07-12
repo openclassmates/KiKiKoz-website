@@ -1,5 +1,7 @@
-vendor/**
-cache/**
+vendor/
+cache/
 user/accounts/**
 user/localhost/
-logs/**
+logs/
+assets/
+

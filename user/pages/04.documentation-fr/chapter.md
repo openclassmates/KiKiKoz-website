@@ -1,11 +1,11 @@
 ---
-title: Documentation de Grav (Traduction française)
+title: Documentation de Grav (fr)
 taxonomy:
     category: docs
 ---
 
-### Chapitre 4.13
+### Chapitre 4
 
-# Documentation de Grav (Traduction française)
+# Documentation de Grav (fr)
 
-Découvrez les principes fondamentaux de **Grav**.
+Découvrez les principes fondamentaux de **Grav**, traduits en français.

@@ -1,0 +1,13 @@
+name: Inkubus
+version: 0.1.0
+description: Theme developped for the Inkub.us project, extends learn2.
+icon: rebel
+author:
+  name: Inkubus Team
+  email: info@inkub.us
+homepage: https://github.com/inkubus-team/grav-theme-inkubus
+demo: http://demo.yoursite.com
+keywords: grav, theme, etc
+bugs: https://github.com/inkubus-team/grav-theme-inkubus/issues
+readme: https://github.com/inkubus-team/grav-theme-inkubus/blob/develop/README.md
+license: MIT

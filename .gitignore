@@ -4,4 +4,6 @@ user/accounts/**
 user/localhost/
 logs/
 assets/
+node_modules/
+
 

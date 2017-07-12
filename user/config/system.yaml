@@ -16,7 +16,7 @@ home:
   alias: /tutoriaux
   hide_in_urls: true
 pages:
-  theme: learn2
+  theme: inkubus
   order:
     by: default
     dir: asc
@@ -71,7 +71,7 @@ pages:
       - forms
   markdown_extra: true
 cache:
-  enabled: true
+  enabled: false
   check:
     method: file
   driver: auto
@@ -89,16 +89,16 @@ twig:
   undefined_filters: true
   umask_fix: false
 assets:
-  css_pipeline: true
-  css_pipeline_include_externals: true
-  css_pipeline_before_excludes: true
-  css_minify: true
+  css_pipeline: false
+  css_pipeline_include_externals: false
+  css_pipeline_before_excludes: false
+  css_minify: false
   css_minify_windows: false
-  css_rewrite: true
-  js_pipeline: true
-  js_pipeline_include_externals: true
-  js_pipeline_before_excludes: true
-  js_minify: true
+  css_rewrite: false
+  js_pipeline: false
+  js_pipeline_include_externals: false
+  js_pipeline_before_excludes: false
+  js_minify: false
   enable_asset_timestamp: false
   collections:
     jquery: 'system://assets/jquery/jquery-2.x.min.js'

@@ -1,0 +1,31 @@
+{
+  "name": "inkubus",
+  "version": "0.0.1",
+  "description": "Inkubus website",
+  "main": "index.php",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node-sass --include-path ./user/themes/inkubus/scss/ --include-path ./user/themes/learn2/scss/ ./user/themes/inkubus/scss/ -o ./user/themes/inkubus/css-compiled/",
+    "watch": "node-sass --watch --include-path ./user/themes/inkubus/scss/ --include-path ./user/themes/learn2/scss/ ./user/themes/inkubus/scss/ -o ./user/themes/inkubus/css-compiled/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openclassmates/kikikoz-website.git"
+  },
+  "keywords": [
+    "website",
+    "grav"
+  ],
+  "author": "Inkubus Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/openclassmates/kikikoz-website/issues"
+  },
+  "homepage": "https://github.com/openclassmates/kikikoz-website#readme",
+  "devDependencies": {
+    "node-sass": "^4.5.3"
+  }
+}

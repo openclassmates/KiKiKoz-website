@@ -1,6 +1,6 @@
 vendor/
 cache/
-user/accounts/**
+user/accounts/
 user/localhost/
 logs/
 assets/

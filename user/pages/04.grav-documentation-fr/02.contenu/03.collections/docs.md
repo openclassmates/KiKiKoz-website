@@ -225,11 +225,10 @@ content:
 ```
 
 La variable `content.items` peut prendre la forme d'un tableau de taxonomies et qui rassemble toutes les pages qui satisfont ces règles. Les pages publiées possédant **à la fois** lés étiquettes foo et bar seront collectées. Le chapitre sur la [Taxonomie](../taxonomie) (TODO: mettre à jour le lien) abordera plus en détails ce concept.
-The `content.items` variable can take an array of taxonomies and it will gather up all pages that satisfy these rules. Published pages that have **both** `foo` **and** `bar` tags will be collected.  The [Taxonomy](../taxonomy) chapter will cover this concept in more detail.
 
-!! If you wish to place multiple variables inline, you will need to separate sub-variables from their parents with `{}` brackets. You can then separate individual variables on that level with a comma. For example: `@taxonomy: {category: [blog, featured], tag: [foo, bar]}`. In this example, the `category` and `tag` sub-variables are placed under `@taxonomy` in the hierarchy, each with listed values placed within `[]` brackets. Pages must meet **all** these requirements to be found.
+!! Si vous souhaitez placer plsuieurs variables en ligne, vous devez séparer les sous-variables de leurs parentes avec des accolades `{}`. Vous pouvez ensuite séparer entre-elles les variables individuelles de ce niveau avec un virgule. Par exemple: `@taxonomy: {category: [blog, featured], tag: [foo, bar]}`. Dans cet exemple, les sous-variables `category`et `tag` sont placées dans la hiérarchie `@taxonomy`, chacune avec des valeurs indiquées entre parenthèse []. LEs pagers doivent respecter toutes ces conditions.
 
-If you have multiple variables in a single parent to set, you can do this using the inline method, but for simplicity, we recommend using the standard method. Here is an example.
+Si vous avez plusieurs variables dans un parent unique, vous pouvez le faire en utilisant la méthode en ligne, mais pour simplifier, nous vous recommandons d'utiliser la méthode standard. Voici un exemple.
 
 ```ruby
 content:
@@ -239,13 +238,13 @@ content:
       tag: [foo, bar]
 ```
 
-Each level in the hierarchy adds two whitespaces before the variable. YAML will allow you to use as many spaces as you want here, but two is standard practice. In the above example, both the `category` and `tag` variables are set under `@taxonomy`.
+Chaque niveau dans la hiérarchie ajoute deux espaces blancs avant la variable. YAML vous permettra d'utiliser autant d'espaces que vous le souhaitez ici, mais deux est une pratique standard. Dans l'exemple ci-dessus, les variables category et tag sont définies sous `@taxonomy`.
 
-### Complex Collections
+### Collections complexes
 
-With Grav **0.9.41** you can now provide multiple complex collection definitions and the resulting collection will be the sum of all the pages found from each of the collection definitions.
+Grav 0.9.41 vous permet d'utiliser plusieurs définitions de collection complexes et la collection résultante sera la somme de toutes les pages trouvées avec chacune des définitions de collection.
 
-for example:
+Par exemple:
 
 ```ruby
 content:
@@ -255,7 +254,7 @@ content:
          category: [blog, featured]
 ```
 
-### Ordering Options
+### Options de tri 
 
 ```ruby
 content:
@@ -266,21 +265,22 @@ content:
     pagination: true
 ```
 
-Ordering of sub-pages follows the same rules as ordering of folders, the available options are:
+L'ordre de tri des sous-pages suit les mêmes règles de tri des dossiers, les options disponibles sont:
 
-| Ordering     | Details                                                                                                                                            |
-| :----------  | :----------                                                                                                                                        |
-| **default**    | The order based on the file system, i.e. `01.home` before `02.advark`                                                                              |
-| **title**      | The order is based on the title as defined in each page                                                                                            |
-| **basename**   | The order is based on the alphabetic folder name after it has been processed by the `basename()` PHP function                                      |
-| **date**       | The order based on the date as defined in each page                                                                                                |
-| **modified**   | The order based on the modified timestamp of the page                                                                                              |
-| **folder**     | The order based on the folder name with any numerical prefix, i.e. `01.`, removed                                                                  |
-| **header.x**   | The order based on any page header field. i.e. `header.taxonomy.year`. Also a default can be added via a pipe. i.e. `header.taxonomy.year|2015`    |
-| **manual**     | The order based on the `order_manual` variable                                                                                                     |
-| **random**     | The order is randomized                                                                                                                            |
-| **custom**     | The order is based on the `content.order.custom` variable                                                                                                                             |
-| **sort_flags** | Allow to override sorting flags for page header-based or default ordering. If the `intl` PHP extension is loaded, only [these flags](https://secure.php.net/manual/en/collator.asort.php) are available. Otherwise, you can use the PHP [standard sorting flags](https://secure.php.net/manual/en/array.constants.php). |
+Option de tri | Détails
+:----- |:-----
+**défaut** | Ordre basé sur celui du système de fichiers, c.-à-d.`01.home` avant `02.advark`
+**title** | The order is based on the title as defined in each page
+**basename** | The order is based on the alphabetic folder name after it has been processed by the `basename()` PHP function
+ **date** | The order based on the date as defined in each page
+**modified** | The order based on the modified timestamp of the page
+**folder** | The order based on the folder name with any numerical prefix, i.e. `01.`, removed
+**header.x** | The order based on any page header field. i.e. `header.taxonomy.year`. Also a default can be added via a pipe. i.e. `header.taxonomy.year|2015`
+**manual** | The order based on the `order_manual` variable
+**random** | The order is randomized
+**custom** | The order is based on the `content.order.custom` variable
+**sort_flags** | Allow to override sorting flags for page header-based or default ordering. If the `intl` PHP extension is loaded, only [these flags](https://secure.php.net/manual/en/collator.asort.php) are available. Otherwise, you can use the PHP [standard sorting flags](https://secure.php.net/manual/en/array.constants.php).
+
 
 The `content.order.dir` variable controls which direction the ordering should be in. Valid values are either `desc` or `asc`.
 

@@ -1,26 +1,26 @@
 ---
-title: Page Collections
+title: Collections de Pages
 taxonomy:
     category: docs
 ---
 
-Collections have grown considerably since the early betas of Grav. We started off with a very limited set of page-based collections, but with the help of our community we have increased these capabilities to make them even more powerful!  So much so that they now have their own section in the documentation.
+Le nombre de collections a considérablement augmenté depuis les débuts de Grav. Nous avons commencé avec un jeu très limité de collections basées sur des pages, mais avec l'aide de notre communauté, nous avons augmenté leurs capacités pour les rendre encore plus puissantes! À tel point qu'elles ont maintenant leur propre section dans la documentation.
 
-## Basics of Grav Collections
+## Fondamentaux au sujet des collections de Grav
 
-In Grav, the most common type of collection is a list of pages that can be defined either in the page's frontmatter or in the twig itself. The most common is to define a collection in the frontmatter. With a collection defined, it is available in the Twig of the page to do with as you wish. By using page collection methods or looping through each [page object](https://learn.getgrav.org/themes/theme-vars#page-object) and using the page methods or properties you can do powerful things. Common examples of this include displaying a list of blog posts, or displaying modular sub-pages to render a complex page design.
+Dans Grav, le type de collection le plus courant est une liste de pages qui peuvent être définies soit dans le l'en-tête de la page, soit dans le Twig lui-même. Le plus courant est de définir une collection dans l'en-tête. Une fois la collection définie, elle est disponible à la demande dans le modèle Twig de la page en cours. En utilisant des méthodes de collecte de page ou en bouclant sur chaque [objet page](https://learn.getgrav.org/themes/theme-vars#page-object) (TODO: mettre à jour avec le lien sur la doc en français) et en utilisant les méthodes ou les propriétés de la page, vous pouvez faire des choses puissantes. Des exemples classiques incluent l'affichage d'une liste de messages de blog ou l'affichage de sous-pages modulaires pour permettant la conception de pages complexes.
 
-## Collection Object
+## Objet Collection
 
-When you define a collection in the page header, you are dynamically creating a [Grav Collection](https://github.com/getgrav/grav/blob/develop/system/src/Grav/Common/Page/Collection.php) that is available in the page's Twig.  This Collection object is **iterable** and can be treated like an **array** which allows you to do things such as:
+Lorsque vous définissez une collection dans l'en-tête de la page, vous créez dynamiquement une [collection Grav](https://github.com/getgrav/grav/blob/develop/system/src/Grav/Common/Page/Collection.php) (TODO: mettre à jour avec le lien en fr) qui sera disponible dans la page Twig. Cet objet Collection est **iterable** et peu être traité comme un **tableau**, ce qui permet de réaliser des opérations telles que: 
 
 ```
 {{ dump(page.collection[page.path]) }}
 ```
 
-## Example Collection Definition
+## Example de définition d'une collection
 
-An example collection defined in the page's frontmatter:
+Voici un exemple de collection définie dans l'en-tête de la page:
 
 ```
 content:
@@ -32,13 +32,13 @@ content:
     pagination: true
 ```
 
-The `content.items` value in the page's frontmatter tells Grav to gather up a collection of items and information passed to this defines how the collection is to be built.
+Dans l'en-tête de la page, content.items indeique à Grav comment la collection doit être construite en rassemblant les éléments et informations qui ont été passés.
 
-This definition creates a collection for the page that consists of the all **child pages** sorted by **date** in **descending** order with **pagination** showing **10 items** per-page.
+Cet exemple de définition crée une collection pour la page concernée, composée de toutes les **pages enfants** classées par **date décroissante** avec une **pagination** montrant **10 éléments** par page.
 
-## Accessing Collections in Twig
+## Accès aux collections dans Twig
 
-When this collection is defined in the header, Grav creates a collection **page.collection** that you can access in a twig template with:
+Lorsque cette collection est définie dans l'en-tête de la page, Grav crée une collection **page.collection** à laquelle vous pouvez accéder depuis un modèle Twig à l'aide du code suivant:
 
 ```
 {% for p in page.collection %}
@@ -47,46 +47,45 @@ When this collection is defined in the header, Grav creates a collection **page.
 {% endfor %}
 ```
 
-This simply loops over the [pages](https://learn.getgrav.org/themes/theme-vars#page-object) in the collection displaying the title and summary.
+Ce code boucle simplement sur les [pages](https://learn.getgrav.org/themes/theme-vars#page-object) (TODO: remplacer le lien avec la version fr) de la collection et affiche le titre de la page ainsi que le résumé.
 
-## Collection Headers
+## En-tête définissant la collection
 
-To tell Grav that a specific page should be a listing page and contain child-pages, there are a number of variables that can be used:
+Un certain nombre de variables peuvent être utilisées afin d'indiquer à Grav que la page spécifique doit être une page de listes et contenir des pages-enfants:
 
-### Summary of collection options
+### Résumé des options pour une collection
 
-|                   String                  |                           Result                          |
-|-------------------------------------------|-----------------------------------------------------------|
-| '@root'                                   | Get the root children                                     |
-| '@root.children'                          | Get the root children (alternative)                       |
-| '@root.descendants'                       | Get the root and recurse through ALL children             |
-|                                           |                                                           |
-| '@self.parent'                            | Get the parent of the current page                        |
-| '@self.siblings'                          | A collection of all other pages on this level             |
-| '@self.modular'                           | Get only the modular children                             |
-| '@self.children'                          | Get the non-modular children                              |
-| '@self.descendants'                       | Recurse through all the non-modular children              |
-|                                           |                                                           |
-| '@page': '/fruit'                         | Get all the children of page `/fruit`                     |
-| '@page.children': '/fruit'                | Alternative to above                                      |
-| '@page.self': '/fruit'                    | Get a collection with only the page `/fruit`              |
-| '@page.page': '/fruit'                    | Alternative to above                                      |
-| '@page.descendants': '/fruit'             | Get and recurse through all the children of page `/fruit` |
-| '@page.modular': '/fruit'                 | Get a collection of all modular subpages of `/fruit`      |
-|                                           |                                                           |
-| '@taxonomy.tag': photography              | taxonomy with tag=`photography`                           |
-| '@taxonomy': {tag: birds, category: blog} | taxonomy with tag=`birds` && category=`blog`              |
+Chaîne | Résultats 
+-------|------------
+'@root'| Obtenir l'enfants à la racine 
+'@root.children' | Obtenir les enfants à la racine (alternative) 
+'@root.descendants'| Obtenir récursivement tous les descendants à partir de la racine
+       |                              
+'@self.parent'| Obtenir le parent de la page courante 
+'@self.siblings' | Obtenir une collection de toutes les autres pages au même niveau 
+'@self.modular' | Obtenir tous les enfants modulaires 
+'@self.children' | Obtenir tous les enfants non-modulaires 
+'@self.descendants' | Obtenir récursivement tous les descendants non-modulaires
+      |
+'@page': '/fruit' | Obtenir tous les enfants de la page `/fruit`
+'@page.children': '/fruit' | Alternative à l'entrée ci-dessus 
+'@page.self': '/fruit' | Obtenir une collection avec la page fruit `/fruit` uniquement 
+'@page.page': '/fruit' | Alternative à l'entrée ci-dessus 
+'@page.descendants': '/fruit' | Obtenir et parcourir récursivement tous les descendants de la page `/fruit`
+'@page.modular': '/fruit' | Obtenir une collection de toutes les sous-pages modulaires de `/fruit`
+        |  
+'@taxonomy.tag': photography | taxonomie avec tag=`photography`
+'@taxonomy': {tag: birds, category: blog} | taxonomie avec tag=`birds` && category=`blog` 
 
+! Ce document décrit l'utilisation de `@page`, `@taxonomy.category`, etc, mais un format alternatif plus sûr par rapport à YAML est `page@`, `taxonomy@.category`. Toutes les commandes @ peuvent être écrites soit au format préfixé ou postfixé.
 
-! This document outlines the use of `@page`, `@taxonomy.category` etc, but a more YAML-safe alternative format is `page@`, `taxonomy@.category`.  All the `@` commands can be written in either prefix or postfix format.
+Nous oborderons cela plus en détails.
 
-We will cover these more in detail. 
+## Collections partant de la racine (root)
 
-## Root Collections
+##### @root - Enfants de premier niveau
 
-##### @root - Top level children
-
-This can be used to retrieve the top/root level **published non-modular children** of a site. Particular useful for getting the items that make up the primary navigation for example:
+Cette notation peut être utilisée pour récupérer les enfant non-modulaires **publiés** au premier niveau sous la racine du site. C'est particulièrement utile pour obtenir les éléments composant par exemple la navigation principale:
 
 ```ruby
 content:
@@ -100,67 +99,67 @@ content:
     items: '@root.children'
 ```
 
-##### @root - Top level children + all descendants
+##### @root - Enfants de premier niveau + tous leurs descendants
 
-This will effectively get every page in your site as it recursively navigates through all the children from the root page down, and builds a collection of **all** the **published non-modular children** of a site.
+Cela permettra d'atteindre, par une navigation récursive, toutes les pages de votre site, en descendant à partir de la page racine, en créant une collection de **tous** les **enfants non-modulaires publiés**.
 
 ```ruby
 content:
     items: '@root.descendants'
 ```
 
-## Self Collections
+## Collections partant de la page courante (self)
 
-##### @self.children - Children of the current page
+##### @self.children - Enfants de la page courante
 
-This is used to list the **published non-modular children** of the current page:
+Permet d'énumérer les **enfants non-modulaires publiés** de la page courante:
 
 ```ruby
 content:
     items: '@self.children'
 ```
 
-##### @self.descendants - Non-modular children + all descendants of the current page
+##### @self.descendants - Enfants non-modulaires publiés de la page courante
 
-Similar to `.children`, the `.descendants` collection will retrieve all the **published non-modular children** but continue to recurse through all their children.
+À l'instar de `.children`, la collection `.descendants` permet de récupérer tous les **enfants non-modulaires publiés**, mais poursuit la récupération de manière récursive sur tous leurs enfants.
 
 ```ruby
 content:
     items: '@self.descendants'
 ```
 
-##### @self.modular - Modular children of the current page
+##### @self.modular - Enfants modulaires de la page courante
 
-The inverse of `.children`, this method retrieves only **published modular children** of the current page (`_features`, `_showcase`, etc.)
+A l'inverse de `.childre`, cette méthode récupère uniquement les **enfants modulaires publiés** de la page actuelle (`_features`, `_showcase`, etc.)
 
 ```ruby
 content:
     items: '@self.modular'
 ```
 
-##### @self.parent - The parent page of the current page
+##### @self.parent - La page-parent de la page courante
 
-This is a special case collection because it will always return just the one **parent** of the current page
+Il s'agit d'une collection spéciale, car elle retournera toujous l'unique parent de la page courante.
 
 ```ruby
 content:
     items: '@self.parent'
 ```
 
-##### @self.siblings - All the sibling pages
+##### @self.siblings - Toutes les pages de même niveau
 
-This collection will collect all the **published** Pages at the same level of the current page, excluding the current page.
+Cette collection rassemblera toutes les pages publiées au même niveau que celui de la page courante, à l'exclusion de la page courante elle-même.
 
 ```ruby
 content:
     items: '@self.siblings'
 ```
 
-## Page Collections
+## Collections partout d'une page spécifique
 
-##### @page or @page.children - Collection of children of a specific page
+##### @page or @page.children - Collection d'enfants à partir d'une page spécifique
 
-This collection takes a slug route of a page as an argument and will return all the **published non-modular** children of that page
+Cette collection prend en argument le slug d'une page et renvoit tous les enfants non-modulaires publiés de cette page.
 
 ```ruby
 content:
@@ -168,7 +167,7 @@ content:
       '@page': '/blog'
 ```
 
-alternatively:
+De manière alternative:
 
 ```ruby
 content:
@@ -176,9 +175,9 @@ content:
       '@page.children': '/blog'
 ```
 
-##### @page.self or @page.page - Collection of just the specific page
+##### @page.self or @page.page - Collection comprenant uniquement la page spécifique
 
-This collection takes a slug route of a page as an argument and will return collection containing that page (if it is **published and non-modular**)
+Cette collection prend comme argument le slug d'une page et renvoie la collection contenant uniquement cette page (si elle est **publiée et non-modulaire**)
 
 ```ruby
 content:
@@ -186,9 +185,9 @@ content:
       '@page.self': '/blog'
 ```
 
-##### @page.descendants - Collection of children + all descendants of a specific page
+##### @page.descendants - Collection des enfants + tous les descendants d'une page spécifique
 
-This collection takes a slug route of a page as an argument and will return all the **published non-modular** children and all their descendants of that page
+Cette collection prend comme argument le slug d'une page et renvoit tous les enfants **non-modulaires publiés** et tous leurs descendants obtenus de manière récursive.
 
 ```ruby
 content:
@@ -196,9 +195,9 @@ content:
       '@page.descendants': '/blog'
 ```
 
-##### @page.modular - Collection of modular children of a specific page
+##### @page.modular - Collection des enfants modulaires d'une page spécifique
 
-This collection takes a slug route of a page as an argument and will return all the **published modular** children of that page
+Cette collection prend comme argument le slug d'une page et renvoit tous les enfants **modulaires publiés** de cette page.
 
 ```ruby
 content:
@@ -207,7 +206,7 @@ content:
 ```
 
 
-## Taxonomy Collections
+## Collections relatives aux taxonomies
 
 ```ruby
 content:
@@ -215,9 +214,9 @@ content:
       '@taxonomy.tag': foo
 ```
 
-Using the `@taxonomy` option, you can utilize Grav's powerful taxonomy functionality.  This is where the `taxonomy` variable in the [Site Configuration](../../basics/grav-configuration#site-configuration) file comes into play. There **must** be a definition for the taxonomy defined in that configuration file for Grav to interpret a page reference to it as valid.
+En utilisant l'option `@taxonomy`, vous pouvez utiliser la puissance de la fonctionnalité de taxonomie de Grav. C'est là que la variable de `taxonomy` du [fichier de configuration du site](../../basics/grav-configuration#site-configuration) (TODO: mettre à jour le lien vers la version fr) entre en jeu. La taxonomie **doit** être définie dans ce fichier de configuration pour que Grav puisse interpréter une référence de page comme valide.
 
-By setting `@taxonomy.tag: foo`, Grav will find all the **published pages** in the `/user/pages` folder that have themselves set `tag: foo` in their taxonomy variable.
+En configurant @taxonomy.tag: foo, Grav trouve toutes les **pages publiées** dans le dossier /user/pages qui comportent le tag: foo dans leur variable de taxonomie. 
 
 ```ruby
 content:
@@ -225,11 +224,11 @@ content:
        '@taxonomy.tag': [foo, bar]
 ```
 
-The `content.items` variable can take an array of taxonomies and it will gather up all pages that satisfy these rules. Published pages that have **both** `foo` **and** `bar` tags will be collected.  The [Taxonomy](../taxonomy) chapter will cover this concept in more detail.
+La variable `content.items` peut prendre la forme d'un tableau de taxonomies et qui rassemble toutes les pages qui satisfont ces règles. Les pages publiées possédant **à la fois** lés étiquettes foo et bar seront collectées. Le chapitre sur la [Taxonomie](../taxonomie) (TODO: mettre à jour le lien) abordera plus en détails ce concept.
 
-!! If you wish to place multiple variables inline, you will need to separate sub-variables from their parents with `{}` brackets. You can then separate individual variables on that level with a comma. For example: `@taxonomy: {category: [blog, featured], tag: [foo, bar]}`. In this example, the `category` and `tag` sub-variables are placed under `@taxonomy` in the hierarchy, each with listed values placed within `[]` brackets. Pages must meet **all** these requirements to be found.
+!! Si vous souhaitez placer plsuieurs variables en ligne, vous devez séparer les sous-variables de leurs parentes avec des accolades `{}`. Vous pouvez ensuite séparer entre-elles les variables individuelles de ce niveau avec un virgule. Par exemple: `@taxonomy: {category: [blog, featured], tag: [foo, bar]}`. Dans cet exemple, les sous-variables `category`et `tag` sont placées dans la hiérarchie `@taxonomy`, chacune avec des valeurs indiquées entre parenthèse []. LEs pagers doivent respecter toutes ces conditions.
 
-If you have multiple variables in a single parent to set, you can do this using the inline method, but for simplicity, we recommend using the standard method. Here is an example.
+Si vous avez plusieurs variables dans un parent unique, vous pouvez le faire en utilisant la méthode en ligne, mais pour simplifier, nous vous recommandons d'utiliser la méthode standard. Voici un exemple.
 
 ```ruby
 content:
@@ -239,13 +238,13 @@ content:
       tag: [foo, bar]
 ```
 
-Each level in the hierarchy adds two whitespaces before the variable. YAML will allow you to use as many spaces as you want here, but two is standard practice. In the above example, both the `category` and `tag` variables are set under `@taxonomy`.
+Chaque niveau dans la hiérarchie ajoute deux espaces blancs avant la variable. YAML vous permettra d'utiliser autant d'espaces que vous le souhaitez ici, mais deux est une pratique standard. Dans l'exemple ci-dessus, les variables category et tag sont définies sous `@taxonomy`.
 
-### Complex Collections
+### Collections complexes
 
-With Grav **0.9.41** you can now provide multiple complex collection definitions and the resulting collection will be the sum of all the pages found from each of the collection definitions.
+Grav 0.9.41 vous permet d'utiliser plusieurs définitions de collection complexes et la collection résultante sera la somme de toutes les pages trouvées avec chacune des définitions de collection.
 
-for example:
+Par exemple:
 
 ```ruby
 content:
@@ -255,7 +254,7 @@ content:
          category: [blog, featured]
 ```
 
-### Ordering Options
+### Options de tri 
 
 ```ruby
 content:
@@ -266,21 +265,22 @@ content:
     pagination: true
 ```
 
-Ordering of sub-pages follows the same rules as ordering of folders, the available options are:
+L'ordre de tri des sous-pages suit les mêmes règles de tri des dossiers, les options disponibles sont:
 
-| Ordering     | Details                                                                                                                                            |
-| :----------  | :----------                                                                                                                                        |
-| **default**    | The order based on the file system, i.e. `01.home` before `02.advark`                                                                              |
-| **title**      | The order is based on the title as defined in each page                                                                                            |
-| **basename**   | The order is based on the alphabetic folder name after it has been processed by the `basename()` PHP function                                      |
-| **date**       | The order based on the date as defined in each page                                                                                                |
-| **modified**   | The order based on the modified timestamp of the page                                                                                              |
-| **folder**     | The order based on the folder name with any numerical prefix, i.e. `01.`, removed                                                                  |
-| **header.x**   | The order based on any page header field. i.e. `header.taxonomy.year`. Also a default can be added via a pipe. i.e. `header.taxonomy.year|2015`    |
-| **manual**     | The order based on the `order_manual` variable                                                                                                     |
-| **random**     | The order is randomized                                                                                                                            |
-| **custom**     | The order is based on the `content.order.custom` variable                                                                                                                             |
-| **sort_flags** | Allow to override sorting flags for page header-based or default ordering. If the `intl` PHP extension is loaded, only [these flags](https://secure.php.net/manual/en/collator.asort.php) are available. Otherwise, you can use the PHP [standard sorting flags](https://secure.php.net/manual/en/array.constants.php). |
+Option de tri | Détails
+:----- |:-----
+**défaut** | Ordre basé sur celui du système de fichiers, c.-à-d.`01.home` avant `02.advark`
+**title** | The order is based on the title as defined in each page
+**basename** | The order is based on the alphabetic folder name after it has been processed by the `basename()` PHP function
+ **date** | The order based on the date as defined in each page
+**modified** | The order based on the modified timestamp of the page
+**folder** | The order based on the folder name with any numerical prefix, i.e. `01.`, removed
+**header.x** | The order based on any page header field. i.e. `header.taxonomy.year`. Also a default can be added via a pipe. i.e. `header.taxonomy.year|2015`
+**manual** | The order based on the `order_manual` variable
+**random** | The order is randomized
+**custom** | The order is based on the `content.order.custom` variable
+**sort_flags** | Allow to override sorting flags for page header-based or default ordering. If the `intl` PHP extension is loaded, only [these flags](https://secure.php.net/manual/en/collator.asort.php) are available. Otherwise, you can use the PHP [standard sorting flags](https://secure.php.net/manual/en/array.constants.php).
+
 
 The `content.order.dir` variable controls which direction the ordering should be in. Valid values are either `desc` or `asc`.
 
